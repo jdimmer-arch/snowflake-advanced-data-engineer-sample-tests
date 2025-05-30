@@ -106,7 +106,9 @@ export function Quiz({ questions, onComplete, onExit }: QuizProps) {
                       ? option.id !== currentQuestion.correctAnswer 
                         ? 'bg-red-50 border-red-200' 
                         : 'bg-green-50 border-green-200'
-                      : 'hover:bg-slate-50'
+                      : option.id === currentAnswer?.selectedOption
+                        ? 'bg-slate-100 border-slate-200'
+                        : 'hover:bg-slate-50'
                 }`}
                 onClick={() => handleOptionSelect(option.id)}
               >
