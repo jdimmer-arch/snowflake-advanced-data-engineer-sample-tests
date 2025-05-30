@@ -30,7 +30,7 @@ This interactive quiz application contains three comprehensive practice tests fo
 
 1. Clone the repository
    ```
-   git clone https://github.com/yourusername/snowflake-advanced-data-engineer-sample-tests.git
+   git clone https://github.com/jdimmer-arch/snowflake-advanced-data-engineer-sample-tests.git
    cd snowflake-advanced-data-engineer-sample-tests
    ```
 
