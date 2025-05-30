@@ -2,6 +2,10 @@
 
 This interactive quiz application contains three comprehensive practice tests for the Snowflake Advanced Data Engineering Certificate (DEA-C02) exam. Each test follows the official domain weightings and includes detailed explanations for all answers.
 
+## Live Demo
+
+The application is deployed and available at: https://mtqvryyz.manus.space
+
 ## Features
 
 - Three complete practice tests with 65 questions each
@@ -19,8 +23,6 @@ This interactive quiz application contains three comprehensive practice tests fo
   - Complete test review
 
 ## Getting Started
-
-  - live demo site  https://kuiitvzb.manus.space/
 
 ### Prerequisites
 
