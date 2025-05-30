@@ -1,0 +1,1914 @@
+{
+  "id": 1,
+  "title": "Practice Test 1",
+  "description": "Snowflake Advanced Data Engineering Certificate (DEA-C02) - Practice Test 1",
+  "questions": [
+    {
+      "id": 1,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer needs to load data from an Amazon S3 bucket into Snowflake. The data arrives continuously throughout the day, and the business requires the data to be available in Snowflake within 15 minutes of being placed in the S3 bucket. Which approach should the data engineer implement?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Create a Snowpipe with an SQS queue notification integration"
+        },
+        {
+          "id": "B",
+          "text": "Schedule a COPY command to run every 15 minutes using Snowflake Tasks"
+        },
+        {
+          "id": "C",
+          "text": "Use Snowflake Streams to capture changes and load them with a Task"
+        },
+        {
+          "id": "D",
+          "text": "Implement a manual COPY command that runs when users request data"
+        },
+        {
+          "id": "A",
+          "text": "Create a Snowpipe with an SQS queue notification integration**\n\n*Explanation: Snowpipe with SQS queue notification integration is the most appropriate solution for near-real-time data loading from S3. When new files are placed in the S3 bucket, S3 events trigger SQS notifications, which then automatically trigger Snowpipe to load the new data. This approach ensures data is loaded within minutes of arrival without manual intervention or scheduled tasks, meeting the 15-minute requirement efficiently.*"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "Snowpipe with SQS queue notification integration is the most appropriate solution for near-real-time data loading from S3. When new files are placed in the S3 bucket, S3 events trigger SQS notifications, which then automatically trigger Snowpipe to load the new data. This approach ensures data is loaded within minutes of arrival without manual intervention or scheduled tasks, meeting the 15-minute requirement efficiently.*"
+    },
+    {
+      "id": 2,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer is designing a data pipeline to load JSON data from an API into Snowflake. The JSON structure varies slightly between API calls. Which approach should be used to handle the varying JSON structure?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Convert all JSON to a fixed schema before loading"
+        },
+        {
+          "id": "B",
+          "text": "Use VARIANT data type to store the JSON data"
+        },
+        {
+          "id": "C",
+          "text": "Normalize the JSON into multiple relational tables before loading"
+        },
+        {
+          "id": "D",
+          "text": "Use external tables with a fixed schema"
+        },
+        {
+          "id": "B",
+          "text": "Use VARIANT data type to store the JSON data**\n\n*Explanation: The VARIANT data type in Snowflake is specifically designed to store semi-structured data like JSON, especially when the structure may vary. It allows for flexible schema handling and enables querying the JSON data using dot notation or the FLATTEN function. This approach accommodates the varying JSON structure without requiring schema conversion or normalization before loading.*"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "The VARIANT data type in Snowflake is specifically designed to store semi-structured data like JSON, especially when the structure may vary. It allows for flexible schema handling and enables querying the JSON data using dot notation or the FLATTEN function. This approach accommodates the varying JSON structure without requiring schema conversion or normalization before loading.*"
+    },
+    {
+      "id": 3,
+      "domain": "Data Movement (17 questions)",
+      "text": "A company needs to share sensitive customer data with a partner organization that also uses Snowflake. Which method provides the most secure and efficient way to share this data?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Export the data to S3 and provide the partner with access credentials"
+        },
+        {
+          "id": "B",
+          "text": "Set up a Snowflake Data Sharing (Database Shares) connection"
+        },
+        {
+          "id": "C",
+          "text": "Create database clones and provide separate login credentials"
+        },
+        {
+          "id": "D",
+          "text": "Use Snowflake Data Exchange to publish the data publicly"
+        },
+        {
+          "id": "B",
+          "text": "Set up a Snowflake Data Sharing (Database Shares) connection**\n\n*Explanation: Snowflake Data Sharing (Database Shares) is the most secure and efficient method for sharing data between Snowflake accounts. It allows for secure, read-only access to specific databases, schemas, or tables without copying the data. The provider maintains control over what data is shared, and the consumer can query the data directly without needing to store or manage it. This approach maintains data governance while enabling efficient collaboration.*"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "Snowflake Data Sharing (Database Shares) is the most secure and efficient method for sharing data between Snowflake accounts. It allows for secure, read-only access to specific databases, schemas, or tables without copying the data. The provider maintains control over what data is shared, and the consumer can query the data directly without needing to store or manage it. This approach maintains data governance while enabling efficient collaboration.*"
+    },
+    {
+      "id": 4,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer is loading data from multiple source systems into Snowflake. Which statement about the COPY command's ON_ERROR option is true?",
+      "options": [
+        {
+          "id": "A",
+          "text": "ON_ERROR=CONTINUE will load all data regardless of errors"
+        },
+        {
+          "id": "B",
+          "text": "ON_ERROR=SKIP_FILE will skip only the specific rows with errors"
+        },
+        {
+          "id": "C",
+          "text": "ON_ERROR=ABORT_STATEMENT is the default behavior if not specified"
+        },
+        {
+          "id": "D",
+          "text": "ON_ERROR=SKIP_FILE_<n> will skip a file if it contains more than n errors"
+        },
+        {
+          "id": "C",
+          "text": "ON_ERROR=ABORT_STATEMENT is the default behavior if not specified**\n\n*Explanation: The default behavior of the COPY command when encountering errors is ON_ERROR=ABORT_STATEMENT, which means the entire load operation will be aborted if any error is encountered. ON_ERROR=CONTINUE will skip rows with errors and continue loading, ON_ERROR=SKIP_FILE will skip the entire file if any error is found in it, and there is no ON_ERROR=SKIP_FILE_<n> option. Understanding the default behavior is crucial for designing robust data loading processes.*"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "The default behavior of the COPY command when encountering errors is ON_ERROR=ABORT_STATEMENT, which means the entire load operation will be aborted if any error is encountered. ON_ERROR=CONTINUE will skip rows with errors and continue loading, ON_ERROR=SKIP_FILE will skip the entire file if any error is found in it, and there is no ON_ERROR=SKIP_FILE_<n> option. Understanding the default behavior is crucial for designing robust data loading processes.*"
+    },
+    {
+      "id": 5,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer needs to load data from an on-premises Oracle database to Snowflake in near real-time. Which approach is most appropriate?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Use Snowflake Snowpipe with direct Oracle connectivity"
+        },
+        {
+          "id": "B",
+          "text": "Implement a change data capture (CDC) solution with Kafka and Snowpipe"
+        },
+        {
+          "id": "C",
+          "text": "Schedule hourly full extracts using the COPY command"
+        },
+        {
+          "id": "D",
+          "text": "Use Snowflake's built-in Oracle connector"
+        },
+        {
+          "id": "B",
+          "text": "Implement a change data capture (CDC) solution with Kafka and Snowpipe**\n\n*Explanation: For near real-time data loading from an on-premises Oracle database, a change data capture (CDC) solution with Kafka as a message broker and Snowpipe for loading is the most appropriate approach. This architecture captures changes in the Oracle database as they occur, streams them through Kafka, and loads them into Snowflake using Snowpipe. This provides a scalable, reliable solution for near real-time data integration between on-premises systems and Snowflake.*"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "For near real-time data loading from an on-premises Oracle database, a change data capture (CDC) solution with Kafka as a message broker and Snowpipe for loading is the most appropriate approach. This architecture captures changes in the Oracle database as they occur, streams them through Kafka, and loads them into Snowflake using Snowpipe. This provides a scalable, reliable solution for near real-time data integration between on-premises systems and Snowflake.*"
+    },
+    {
+      "id": 6,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer is troubleshooting a Snowpipe that has stopped loading data. Which Snowflake view should be checked first to identify the issue?",
+      "options": [
+        {
+          "id": "A",
+          "text": "SNOWFLAKE.ACCOUNT_USAGE.LOAD_HISTORY"
+        },
+        {
+          "id": "B",
+          "text": "SNOWFLAKE.ACCOUNT_USAGE.COPY_HISTORY"
+        },
+        {
+          "id": "C",
+          "text": "SNOWFLAKE.ACCOUNT_USAGE.PIPE_USAGE_HISTORY"
+        },
+        {
+          "id": "D",
+          "text": "SNOWFLAKE.ACCOUNT_USAGE.QUERY_HISTORY"
+        },
+        {
+          "id": "C",
+          "text": "SNOWFLAKE.ACCOUNT_USAGE.PIPE_USAGE_HISTORY**\n\n*Explanation: SNOWFLAKE.ACCOUNT_USAGE.PIPE_USAGE_HISTORY is the most appropriate view to check first when troubleshooting Snowpipe issues. This view contains historical information about pipe usage, including errors and status information. It provides details about file loads, error messages, and pipe execution that can help identify why a Snowpipe has stopped loading data. The other views may provide supplementary information but are not as directly relevant to Snowpipe troubleshooting.*"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "SNOWFLAKE.ACCOUNT_USAGE.PIPE_USAGE_HISTORY is the most appropriate view to check first when troubleshooting Snowpipe issues. This view contains historical information about pipe usage, including errors and status information. It provides details about file loads, error messages, and pipe execution that can help identify why a Snowpipe has stopped loading data. The other views may provide supplementary information but are not as directly relevant to Snowpipe troubleshooting.*"
+    },
+    {
+      "id": 7,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer needs to load data from multiple CSV files with varying schemas into a single Snowflake table. Which approach should be used?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Create a separate staging table for each schema variation, then merge into the target"
+        },
+        {
+          "id": "B",
+          "text": "Use the MATCH_BY_COLUMN_NAME option in the COPY command"
+        },
+        {
+          "id": "C",
+          "text": "Use the AUTO_INGEST=TRUE parameter with Snowpipe"
+        },
+        {
+          "id": "D",
+          "text": "Create an external table with a superset schema of all variations"
+        },
+        {
+          "id": "B",
+          "text": "Use the MATCH_BY_COLUMN_NAME option in the COPY command**\n\n*Explanation: The MATCH_BY_COLUMN_NAME option in the COPY command allows loading data from files with varying schemas by matching column names rather than positions. This option instructs Snowflake to map source columns to target columns based on names, ignoring extra columns in the source and filling missing columns with NULL values. This is ideal for handling schema variations without creating multiple staging tables or complex transformations.*"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "The MATCH_BY_COLUMN_NAME option in the COPY command allows loading data from files with varying schemas by matching column names rather than positions. This option instructs Snowflake to map source columns to target columns based on names, ignoring extra columns in the source and filling missing columns with NULL values. This is ideal for handling schema variations without creating multiple staging tables or complex transformations.*"
+    },
+    {
+      "id": 8,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer is designing a solution to load data from multiple external stages into a single Snowflake table. The data needs to be transformed during the load process. Which approach is most efficient?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Use multiple COPY commands with different transformations"
+        },
+        {
+          "id": "B",
+          "text": "Create a view on top of the external stages and insert into the table"
+        },
+        {
+          "id": "C",
+          "text": "Use a single COPY command with a SELECT statement that includes transformations"
+        },
+        {
+          "id": "D",
+          "text": "Load the raw data first, then transform using a separate SQL statement"
+        },
+        {
+          "id": "C",
+          "text": "Use a single COPY command with a SELECT statement that includes transformations**\n\n*Explanation: Using a single COPY command with a SELECT statement that includes transformations is the most efficient approach for loading and transforming data from multiple external stages. This method allows for transformations to be applied during the load process (ELT approach), reducing the need for intermediate storage and additional processing steps. The SELECT statement can include joins, filters, and other transformations to shape the data as it's being loaded.*"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "Using a single COPY command with a SELECT statement that includes transformations is the most efficient approach for loading and transforming data from multiple external stages. This method allows for transformations to be applied during the load process (ELT approach), reducing the need for intermediate storage and additional processing steps. The SELECT statement can include joins, filters, and other transformations to shape the data as it's being loaded.*"
+    },
+    {
+      "id": 9,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer needs to load data from a streaming source that produces Avro-formatted messages. Which Snowflake feature should be used to efficiently process this streaming data?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Snowflake Streams"
+        },
+        {
+          "id": "B",
+          "text": "Snowpipe with Kafka connector"
+        },
+        {
+          "id": "C",
+          "text": "External Tables with AUTO_REFRESH"
+        },
+        {
+          "id": "D",
+          "text": "Snowflake Tasks with COPY commands"
+        },
+        {
+          "id": "B",
+          "text": "Snowpipe with Kafka connector**\n\n*Explanation: Snowpipe with the Kafka connector is specifically designed to efficiently process streaming data from Kafka topics, including Avro-formatted messages. The Kafka connector handles the consumption of messages from Kafka topics and stages them for Snowpipe to load into Snowflake tables. This provides a scalable, reliable solution for processing streaming data with minimal latency, making it ideal for Avro-formatted streaming sources.*"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "Snowpipe with the Kafka connector is specifically designed to efficiently process streaming data from Kafka topics, including Avro-formatted messages. The Kafka connector handles the consumption of messages from Kafka topics and stages them for Snowpipe to load into Snowflake tables. This provides a scalable, reliable solution for processing streaming data with minimal latency, making it ideal for Avro-formatted streaming sources.*"
+    },
+    {
+      "id": 10,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer is setting up a data pipeline to load data from an external stage. Which parameter in the COPY command is used to specify the file format for the data being loaded?",
+      "options": [
+        {
+          "id": "A",
+          "text": "FILE_TYPE"
+        },
+        {
+          "id": "B",
+          "text": "FORMAT_NAME"
+        },
+        {
+          "id": "C",
+          "text": "DATA_FORMAT"
+        },
+        {
+          "id": "D",
+          "text": "SOURCE_FORMAT"
+        },
+        {
+          "id": "B",
+          "text": "FORMAT_NAME**\n\n*Explanation: The FORMAT_NAME parameter in the COPY command is used to specify the file format for the data being loaded from an external stage. This parameter references a named file format object that has been created in Snowflake, which defines properties such as field delimiter, record delimiter, compression type, and other format-specific options. Using named file formats promotes reusability and consistency across data loading operations.*"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "The FORMAT_NAME parameter in the COPY command is used to specify the file format for the data being loaded from an external stage. This parameter references a named file format object that has been created in Snowflake, which defines properties such as field delimiter, record delimiter, compression type, and other format-specific options. Using named file formats promotes reusability and consistency across data loading operations.*"
+    },
+    {
+      "id": 11,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer needs to load data from a REST API that requires OAuth authentication. Which approach should be used to securely manage the authentication credentials in Snowflake?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Store credentials in a Snowflake table with encryption"
+        },
+        {
+          "id": "B",
+          "text": "Use Snowflake secure external functions"
+        },
+        {
+          "id": "C",
+          "text": "Create a Snowflake network rule with embedded credentials"
+        },
+        {
+          "id": "D",
+          "text": "Use Snowflake OAuth security integration"
+        },
+        {
+          "id": "D",
+          "text": "Use Snowflake OAuth security integration**\n\n*Explanation: Snowflake OAuth security integration is the most secure approach for managing OAuth authentication credentials when accessing external REST APIs. This feature allows you to configure and store OAuth parameters securely within Snowflake, and then reference them when calling external services. This approach keeps sensitive credentials secure and centrally managed, following security best practices for authentication to external systems.*"
+        }
+      ],
+      "correctAnswer": "D",
+      "explanation": "Snowflake OAuth security integration is the most secure approach for managing OAuth authentication credentials when accessing external REST APIs. This feature allows you to configure and store OAuth parameters securely within Snowflake, and then reference them when calling external services. This approach keeps sensitive credentials secure and centrally managed, following security best practices for authentication to external systems.*"
+    },
+    {
+      "id": 12,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer is designing a solution to handle late-arriving data in a Snowflake data warehouse. Which approach is most appropriate?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Use Snowflake Streams to capture changes and apply them"
+        },
+        {
+          "id": "B",
+          "text": "Implement a slowly changing dimension (SCD) Type 2 approach"
+        },
+        {
+          "id": "C",
+          "text": "Use Snowflake Time Travel to reprocess historical data"
+        },
+        {
+          "id": "D",
+          "text": "Create a separate table for late-arriving data"
+        },
+        {
+          "id": "B",
+          "text": "Implement a slowly changing dimension (SCD) Type 2 approach**\n\n*Explanation: Implementing a slowly changing dimension (SCD) Type 2 approach is most appropriate for handling late-arriving data in a data warehouse. This method maintains historical accuracy by creating new records with effective dates when data changes, rather than overwriting existing records. This preserves the historical context of the data and ensures that analytics based on point-in-time accuracy remain valid, even when data arrives late or out of sequence.*"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "Implementing a slowly changing dimension (SCD) Type 2 approach is most appropriate for handling late-arriving data in a data warehouse. This method maintains historical accuracy by creating new records with effective dates when data changes, rather than overwriting existing records. This preserves the historical context of the data and ensures that analytics based on point-in-time accuracy remain valid, even when data arrives late or out of sequence.*"
+    },
+    {
+      "id": 13,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer needs to load data from multiple CSV files where some files may contain corrupted records. Which VALIDATION_MODE setting in the COPY command should be used to identify files with corrupted records before loading?",
+      "options": [
+        {
+          "id": "A",
+          "text": "VALIDATION_MODE = RETURN_n_ROWS"
+        },
+        {
+          "id": "B",
+          "text": "VALIDATION_MODE = RETURN_ERRORS"
+        },
+        {
+          "id": "C",
+          "text": "VALIDATION_MODE = RETURN_ALL_ERRORS"
+        },
+        {
+          "id": "D",
+          "text": "VALIDATION_MODE = VALIDATE_ONLY"
+        },
+        {
+          "id": "D",
+          "text": "VALIDATION_MODE = VALIDATE_ONLY**\n\n*Explanation: VALIDATION_MODE = VALIDATE_ONLY is the appropriate setting to identify files with corrupted records before actually loading the data. This mode validates the format and structure of the input files against the target table without loading any data. It returns any errors found during validation, allowing the data engineer to identify and fix issues before performing the actual data load. This approach prevents partial loads and the need to roll back data.*"
+        }
+      ],
+      "correctAnswer": "D",
+      "explanation": "VALIDATION_MODE = VALIDATE_ONLY is the appropriate setting to identify files with corrupted records before actually loading the data. This mode validates the format and structure of the input files against the target table without loading any data. It returns any errors found during validation, allowing the data engineer to identify and fix issues before performing the actual data load. This approach prevents partial loads and the need to roll back data.*"
+    },
+    {
+      "id": 14,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer is designing a solution to replicate data from a Snowflake account in AWS to another Snowflake account in Azure. Which feature should be used?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Snowflake Database Replication"
+        },
+        {
+          "id": "B",
+          "text": "Snowflake Failover Groups"
+        },
+        {
+          "id": "C",
+          "text": "Snowflake Data Sharing"
+        },
+        {
+          "id": "D",
+          "text": "Snowflake External Tables"
+        },
+        {
+          "id": "A",
+          "text": "Snowflake Database Replication**\n\n*Explanation: Snowflake Database Replication is specifically designed to replicate databases across different Snowflake accounts, including across different cloud providers (AWS to Azure in this case). This feature provides a way to maintain synchronized copies of databases in different regions or cloud platforms for disaster recovery, global data distribution, or cloud migration scenarios. Data Sharing provides read-only access but doesn't replicate the data, while the other options don't address cross-account replication needs.*"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "Snowflake Database Replication is specifically designed to replicate databases across different Snowflake accounts, including across different cloud providers (AWS to Azure in this case). This feature provides a way to maintain synchronized copies of databases in different regions or cloud platforms for disaster recovery, global data distribution, or cloud migration scenarios. Data Sharing provides read-only access but doesn't replicate the data, while the other options don't address cross-account replication needs.*"
+    },
+    {
+      "id": 15,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer needs to load data from a source that produces files with inconsistent column ordering. Which option in the COPY command should be used to handle this situation?",
+      "options": [
+        {
+          "id": "A",
+          "text": "MATCH_BY_COLUMN_NAME = TRUE"
+        },
+        {
+          "id": "B",
+          "text": "FORCE = TRUE"
+        },
+        {
+          "id": "C",
+          "text": "COLUMN_ORDER = FLEXIBLE"
+        },
+        {
+          "id": "D",
+          "text": "PARSE_HEADER = TRUE"
+        },
+        {
+          "id": "A",
+          "text": "MATCH_BY_COLUMN_NAME = TRUE**\n\n*Explanation: The MATCH_BY_COLUMN_NAME = TRUE option in the COPY command is specifically designed to handle files with inconsistent column ordering. This option instructs Snowflake to match columns in the source file to the target table based on column names rather than positions. This ensures that data is loaded correctly regardless of the order of columns in the source files, providing flexibility when dealing with inconsistent source data formats.*"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "The MATCH_BY_COLUMN_NAME = TRUE option in the COPY command is specifically designed to handle files with inconsistent column ordering. This option instructs Snowflake to match columns in the source file to the target table based on column names rather than positions. This ensures that data is loaded correctly regardless of the order of columns in the source files, providing flexibility when dealing with inconsistent source data formats.*"
+    },
+    {
+      "id": 16,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer is setting up a Snowpipe to load data from an AWS S3 bucket. Which AWS service is required to enable auto-ingest functionality?",
+      "options": [
+        {
+          "id": "A",
+          "text": "AWS Lambda"
+        },
+        {
+          "id": "B",
+          "text": "Amazon SQS"
+        },
+        {
+          "id": "C",
+          "text": "Amazon SNS"
+        },
+        {
+          "id": "D",
+          "text": "AWS Glue"
+        },
+        {
+          "id": "B",
+          "text": "Amazon SQS**\n\n*Explanation: Amazon Simple Queue Service (SQS) is required to enable auto-ingest functionality for Snowpipe when loading data from an AWS S3 bucket. SQS is used to queue the S3 event notifications that are generated when new files are added to the bucket. Snowpipe then consumes these notifications from the SQS queue to trigger the automatic loading of new data files. This integration enables near-real-time data loading without manual intervention or scheduled tasks.*"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "Amazon Simple Queue Service (SQS) is required to enable auto-ingest functionality for Snowpipe when loading data from an AWS S3 bucket. SQS is used to queue the S3 event notifications that are generated when new files are added to the bucket. Snowpipe then consumes these notifications from the SQS queue to trigger the automatic loading of new data files. This integration enables near-real-time data loading without manual intervention or scheduled tasks.*"
+    },
+    {
+      "id": 17,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer needs to load data from a source system that produces files with a custom format not directly supported by Snowflake's built-in file formats. Which approach should be used?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Convert the files to a supported format before loading"
+        },
+        {
+          "id": "B",
+          "text": "Use an external function to transform the data during loading"
+        },
+        {
+          "id": "C",
+          "text": "Create a custom file format with the FORMAT_TYPE = 'CSV' and appropriate options"
+        },
+        {
+          "id": "D",
+          "text": "Use Snowflake's VARIANT data type with JSON_PARSE"
+        },
+        {
+          "id": "A",
+          "text": "Convert the files to a supported format before loading**\n\n*Explanation: When dealing with custom file formats not directly supported by Snowflake, the most reliable approach is to convert the files to a supported format before loading. While Snowflake supports various file formats (CSV, JSON, Avro, Parquet, ORC, XML), truly custom formats require pre-processing. This can be done using external ETL tools, custom scripts, or cloud functions that transform the data into a Snowflake-compatible format before staging it for loading. This approach ensures compatibility and reduces potential errors during the load process.*"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "When dealing with custom file formats not directly supported by Snowflake, the most reliable approach is to convert the files to a supported format before loading. While Snowflake supports various file formats (CSV, JSON, Avro, Parquet, ORC, XML), truly custom formats require pre-processing. This can be done using external ETL tools, custom scripts, or cloud functions that transform the data into a Snowflake-compatible format before staging it for loading. This approach ensures compatibility and reduces potential errors during the load process.*"
+    },
+    {
+      "id": 18,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer notices that a query joining two large tables is running slowly. The query filter includes a WHERE clause on a high-cardinality column. Which optimization technique would most likely improve performance?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Add a materialized view on the joined tables"
+        },
+        {
+          "id": "B",
+          "text": "Increase the warehouse size"
+        },
+        {
+          "id": "C",
+          "text": "Add a clustering key on the filter column"
+        },
+        {
+          "id": "D",
+          "text": "Enable query result caching"
+        },
+        {
+          "id": "C",
+          "text": "Add a clustering key on the filter column**\n\n*Explanation: Adding a clustering key on the high-cardinality column used in the WHERE clause would most likely improve query performance. Clustering keys in Snowflake organize the micro-partitions to co-locate similar data values, enabling more efficient pruning during query execution. When a query filters on a clustered column, Snowflake can skip scanning micro-partitions that don't contain relevant data, significantly reducing the amount of data scanned and improving query performance. This is particularly effective for high-cardinality columns used frequently in filters.*"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "Adding a clustering key on the high-cardinality column used in the WHERE clause would most likely improve query performance. Clustering keys in Snowflake organize the micro-partitions to co-locate similar data values, enabling more efficient pruning during query execution. When a query filters on a clustered column, Snowflake can skip scanning micro-partitions that don't contain relevant data, significantly reducing the amount of data scanned and improving query performance. This is particularly effective for high-cardinality columns used frequently in filters.*"
+    },
+    {
+      "id": 19,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer is analyzing query performance and notices that a specific query is scanning a large amount of data but returning only a small result set. Which Snowflake feature should be used to identify the specific operations causing this inefficiency?",
+      "options": [
+        {
+          "id": "A",
+          "text": "EXPLAIN"
+        },
+        {
+          "id": "B",
+          "text": "QUERY_HISTORY view"
+        },
+        {
+          "id": "C",
+          "text": "INFORMATION_SCHEMA.TABLES"
+        },
+        {
+          "id": "D",
+          "text": "Query Profile"
+        },
+        {
+          "id": "D",
+          "text": "Query Profile**\n\n*Explanation: The Query Profile feature in Snowflake provides a detailed visual breakdown of query execution, showing exactly which operations are consuming the most resources and scanning the most data. Unlike EXPLAIN, which shows the execution plan before running the query, Query Profile shows actual runtime statistics after execution. This makes it the most effective tool for identifying specific operations causing inefficiencies in queries that scan large amounts of data but return small result sets. The profile shows metrics like partition pruning efficiency, bytes scanned, and execution time for each operation.*"
+        }
+      ],
+      "correctAnswer": "D",
+      "explanation": "The Query Profile feature in Snowflake provides a detailed visual breakdown of query execution, showing exactly which operations are consuming the most resources and scanning the most data. Unlike EXPLAIN, which shows the execution plan before running the query, Query Profile shows actual runtime statistics after execution. This makes it the most effective tool for identifying specific operations causing inefficiencies in queries that scan large amounts of data but return small result sets. The profile shows metrics like partition pruning efficiency, bytes scanned, and execution time for each operation.*"
+    },
+    {
+      "id": 20,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data warehouse contains a large fact table with billions of rows that is frequently queried with filters on date ranges. Which approach would provide the best query performance?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Create a materialized view for each common date range"
+        },
+        {
+          "id": "B",
+          "text": "Implement a clustering key on the date column"
+        },
+        {
+          "id": "C",
+          "text": "Increase the warehouse size to X-Large"
+        },
+        {
+          "id": "D",
+          "text": "Create multiple smaller tables partitioned by date ranges"
+        },
+        {
+          "id": "B",
+          "text": "Implement a clustering key on the date column**\n\n*Explanation: Implementing a clustering key on the date column is the most effective approach for improving query performance on a large fact table frequently filtered by date ranges. Clustering organizes the micro-partitions based on the date values, enabling Snowflake to efficiently prune irrelevant micro-partitions during query execution. This significantly reduces the amount of data scanned for date-filtered queries. Unlike creating multiple materialized views or tables, clustering provides a single, maintainable solution that works for any date range query, not just predefined ones, while avoiding data duplication.*"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "Implementing a clustering key on the date column is the most effective approach for improving query performance on a large fact table frequently filtered by date ranges. Clustering organizes the micro-partitions based on the date values, enabling Snowflake to efficiently prune irrelevant micro-partitions during query execution. This significantly reduces the amount of data scanned for date-filtered queries. Unlike creating multiple materialized views or tables, clustering provides a single, maintainable solution that works for any date range query, not just predefined ones, while avoiding data duplication.*"
+    },
+    {
+      "id": 21,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer is optimizing a warehouse for a mixed workload of both short, interactive queries and long-running transformations. Which warehouse configuration would be most appropriate?",
+      "options": [
+        {
+          "id": "A",
+          "text": "A single X-Large warehouse for all workloads"
+        },
+        {
+          "id": "B",
+          "text": "Separate warehouses for different query types with appropriate sizing"
+        },
+        {
+          "id": "C",
+          "text": "A multi-cluster warehouse with maximum clusters set to 10"
+        },
+        {
+          "id": "D",
+          "text": "A single warehouse with auto-suspend set to 60 seconds"
+        },
+        {
+          "id": "B",
+          "text": "Separate warehouses for different query types with appropriate sizing**\n\n*Explanation: Using separate warehouses for different query types with appropriate sizing is the most effective approach for a mixed workload. Short, interactive queries benefit from smaller warehouses with quick scaling, while long-running transformations may require larger, more stable resources. Separating these workloads prevents resource contention, where long-running jobs block interactive queries. This approach also allows for workload-specific configurations (auto-suspend timing, scaling policies, resource monitors) and provides better cost control and performance predictability than using a single warehouse for all workloads.*"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "Using separate warehouses for different query types with appropriate sizing is the most effective approach for a mixed workload. Short, interactive queries benefit from smaller warehouses with quick scaling, while long-running transformations may require larger, more stable resources. Separating these workloads prevents resource contention, where long-running jobs block interactive queries. This approach also allows for workload-specific configurations (auto-suspend timing, scaling policies, resource monitors) and provides better cost control and performance predictability than using a single warehouse for all workloads.*"
+    },
+    {
+      "id": 22,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer notices that queries against a large table are not benefiting from micro-partition pruning despite having appropriate filters. What is the most likely cause?",
+      "options": [
+        {
+          "id": "A",
+          "text": "The warehouse size is too small"
+        },
+        {
+          "id": "B",
+          "text": "The table has too many micro-partitions"
+        },
+        {
+          "id": "C",
+          "text": "The table's clustering key is not aligned with common query filters"
+        },
+        {
+          "id": "D",
+          "text": "Query result caching is disabled"
+        },
+        {
+          "id": "C",
+          "text": "The table's clustering key is not aligned with common query filters**\n\n*Explanation: The most likely cause for queries not benefiting from micro-partition pruning despite having appropriate filters is that the table's clustering key is not aligned with the common query filters. Effective micro-partition pruning depends on having clustering keys that match the columns frequently used in query filters. If the table is clustered on columns different from those used in query predicates, Snowflake cannot efficiently determine which micro-partitions to skip, resulting in full table scans and poor performance despite the presence of filters.*"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "The most likely cause for queries not benefiting from micro-partition pruning despite having appropriate filters is that the table's clustering key is not aligned with the common query filters. Effective micro-partition pruning depends on having clustering keys that match the columns frequently used in query filters. If the table is clustered on columns different from those used in query predicates, Snowflake cannot efficiently determine which micro-partitions to skip, resulting in full table scans and poor performance despite the presence of filters.*"
+    },
+    {
+      "id": 23,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer needs to optimize a query that performs an aggregation over a large dataset with a GROUP BY clause on a high-cardinality column. Which approach would be most effective?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Use a larger warehouse size"
+        },
+        {
+          "id": "B",
+          "text": "Create a materialized view with the pre-computed aggregation"
+        },
+        {
+          "id": "C",
+          "text": "Add a clustering key on the GROUP BY column"
+        },
+        {
+          "id": "D",
+          "text": "Enable query result caching"
+        },
+        {
+          "id": "C",
+          "text": "Add a clustering key on the GROUP BY column**\n\n*Explanation: Adding a clustering key on the high-cardinality column used in the GROUP BY clause would be most effective for optimizing this query. Clustering improves the locality of data with similar values, which significantly enhances the performance of GROUP BY operations. When data is clustered by the grouping column, Snowflake can process each group more efficiently by accessing co-located data, reducing shuffling and improving aggregation performance. While a materialized view could help, it's less flexible if query parameters change, and simply increasing warehouse size doesn't address the fundamental data organization issue.*"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "Adding a clustering key on the high-cardinality column used in the GROUP BY clause would be most effective for optimizing this query. Clustering improves the locality of data with similar values, which significantly enhances the performance of GROUP BY operations. When data is clustered by the grouping column, Snowflake can process each group more efficiently by accessing co-located data, reducing shuffling and improving aggregation performance. While a materialized view could help, it's less flexible if query parameters change, and simply increasing warehouse size doesn't address the fundamental data organization issue.*"
+    },
+    {
+      "id": 24,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer is troubleshooting a slow-running query and notices in the query profile that a large amount of data is being spilled to remote storage. What is the most likely cause?",
+      "options": [
+        {
+          "id": "A",
+          "text": "The warehouse has insufficient memory for the operation"
+        },
+        {
+          "id": "B",
+          "text": "The query is scanning too many micro-partitions"
+        },
+        {
+          "id": "C",
+          "text": "The table is not properly clustered"
+        },
+        {
+          "id": "D",
+          "text": "The query cache is full"
+        },
+        {
+          "id": "A",
+          "text": "The warehouse has insufficient memory for the operation**\n\n*Explanation: Data being spilled to remote storage during query execution indicates that the warehouse has insufficient memory for the operation. When Snowflake cannot fit all the data needed for an operation (like a large join or aggregation) in memory, it \"spills\" excess data to remote storage, which significantly slows down processing due to the additional I/O operations. This is typically caused by using a warehouse size that's too small for the data volume being processed or by inefficient queries that generate large intermediate results. Increasing the warehouse size or optimizing the query to reduce memory requirements would address this issue.*"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "Data being spilled to remote storage during query execution indicates that the warehouse has insufficient memory for the operation. When Snowflake cannot fit all the data needed for an operation (like a large join or aggregation) in memory, it \"spills\" excess data to remote storage, which significantly slows down processing due to the additional I/O operations. This is typically caused by using a warehouse size that's too small for the data volume being processed or by inefficient queries that generate large intermediate results. Increasing the warehouse size or optimizing the query to reduce memory requirements would address this issue.*"
+    },
+    {
+      "id": 25,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer needs to improve the performance of a dashboard that queries the same large dataset multiple times with different parameters. Which Snowflake feature would be most effective?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Result caching"
+        },
+        {
+          "id": "B",
+          "text": "Materialized views"
+        },
+        {
+          "id": "C",
+          "text": "Multi-cluster warehouses"
+        },
+        {
+          "id": "D",
+          "text": "Zero-copy cloning"
+        },
+        {
+          "id": "B",
+          "text": "Materialized views**\n\n*Explanation: Materialized views would be most effective for improving dashboard performance that queries the same large dataset with different parameters. Materialized views pre-compute and store query results, including aggregations and joins, and automatically maintain these results as the underlying data changes. Unlike result caching, which only helps if the exact same query is run again, materialized views can accelerate a variety of queries against the same base tables. This is particularly valuable for dashboards where the base data is consistent but is analyzed from different angles or with different filters.*"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "Materialized views would be most effective for improving dashboard performance that queries the same large dataset with different parameters. Materialized views pre-compute and store query results, including aggregations and joins, and automatically maintain these results as the underlying data changes. Unlike result caching, which only helps if the exact same query is run again, materialized views can accelerate a variety of queries against the same base tables. This is particularly valuable for dashboards where the base data is consistent but is analyzed from different angles or with different filters.*"
+    },
+    {
+      "id": 26,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer is optimizing a large join operation between two tables. The join condition uses a column that has many duplicate values. Which join type would likely be most efficient in Snowflake?",
+      "options": [
+        {
+          "id": "A",
+          "text": "MERGE join"
+        },
+        {
+          "id": "B",
+          "text": "HASH join"
+        },
+        {
+          "id": "C",
+          "text": "NESTED LOOP join"
+        },
+        {
+          "id": "D",
+          "text": "SORT MERGE join"
+        },
+        {
+          "id": "B",
+          "text": "HASH join**\n\n*Explanation: A HASH join would likely be most efficient for joining tables on a column with many duplicate values in Snowflake. Snowflake's query optimizer typically chooses hash joins for equi-joins (using equality conditions), especially when joining large tables. Hash joins build a hash table on the smaller table and then probe it with values from the larger table, making them efficient for columns with duplicates. While Snowflake's optimizer automatically selects the join strategy, understanding that hash joins are typically used for this scenario helps in designing efficient join operations and interpreting query plans.*"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "A HASH join would likely be most efficient for joining tables on a column with many duplicate values in Snowflake. Snowflake's query optimizer typically chooses hash joins for equi-joins (using equality conditions), especially when joining large tables. Hash joins build a hash table on the smaller table and then probe it with values from the larger table, making them efficient for columns with duplicates. While Snowflake's optimizer automatically selects the join strategy, understanding that hash joins are typically used for this scenario helps in designing efficient join operations and interpreting query plans.*"
+    },
+    {
+      "id": 27,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer notices that a critical ETL process with multiple transformation steps is running slowly. Which approach would most effectively improve the end-to-end performance?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Increase the warehouse size for all transformations"
+        },
+        {
+          "id": "B",
+          "text": "Use a separate warehouse for each transformation step"
+        },
+        {
+          "id": "C",
+          "text": "Combine all transformations into a single SQL statement"
+        },
+        {
+          "id": "D",
+          "text": "Analyze the query profile to identify and optimize the slowest steps"
+        },
+        {
+          "id": "D",
+          "text": "Analyze the query profile to identify and optimize the slowest steps**\n\n*Explanation: Analyzing the query profile to identify and optimize the slowest steps is the most effective approach for improving end-to-end ETL performance. This targeted approach focuses resources on the specific bottlenecks rather than making broad changes that may not address the root causes. By examining the query profile, the data engineer can identify which specific transformations are consuming the most time or resources and then apply appropriate optimizations (clustering, query rewrites, materialized views, etc.) to those specific steps. This methodical approach yields better results than general solutions like increasing warehouse size or restructuring the entire process.*"
+        }
+      ],
+      "correctAnswer": "D",
+      "explanation": "Analyzing the query profile to identify and optimize the slowest steps is the most effective approach for improving end-to-end ETL performance. This targeted approach focuses resources on the specific bottlenecks rather than making broad changes that may not address the root causes. By examining the query profile, the data engineer can identify which specific transformations are consuming the most time or resources and then apply appropriate optimizations (clustering, query rewrites, materialized views, etc.) to those specific steps. This methodical approach yields better results than general solutions like increasing warehouse size or restructuring the entire process.*"
+    },
+    {
+      "id": 28,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer needs to optimize a query that performs a window function calculation over a large dataset ordered by a timestamp column. Which approach would most improve performance?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Add a clustering key on the timestamp column"
+        },
+        {
+          "id": "B",
+          "text": "Use a larger warehouse size"
+        },
+        {
+          "id": "C",
+          "text": "Create a materialized view with the window function pre-computed"
+        },
+        {
+          "id": "D",
+          "text": "Rewrite the query to use a GROUP BY instead of a window function"
+        },
+        {
+          "id": "A",
+          "text": "Add a clustering key on the timestamp column**\n\n*Explanation: Adding a clustering key on the timestamp column would most improve performance for a query with window functions ordered by that timestamp. Window functions that operate on ordered data benefit significantly from clustering because it physically organizes the data in a way that aligns with the ORDER BY clause. When data is clustered by timestamp, the window function can process consecutive rows more efficiently with reduced data movement. This is particularly effective for large datasets where the ordering operation would otherwise require substantial resources to sort the data during query execution.*"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "Adding a clustering key on the timestamp column would most improve performance for a query with window functions ordered by that timestamp. Window functions that operate on ordered data benefit significantly from clustering because it physically organizes the data in a way that aligns with the ORDER BY clause. When data is clustered by timestamp, the window function can process consecutive rows more efficiently with reduced data movement. This is particularly effective for large datasets where the ordering operation would otherwise require substantial resources to sort the data during query execution.*"
+    },
+    {
+      "id": 29,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer is designing a solution for a reporting system that needs to query the same dataset multiple times per hour. The data is updated daily during a nightly batch process. Which feature would provide the best query performance?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Automatic clustering"
+        },
+        {
+          "id": "B",
+          "text": "Search optimization"
+        },
+        {
+          "id": "C",
+          "text": "Query result cache"
+        },
+        {
+          "id": "D",
+          "text": "Multi-cluster warehouses"
+        },
+        {
+          "id": "C",
+          "text": "Query result cache**\n\n*Explanation: Query result cache would provide the best performance for a reporting system that repeatedly queries the same dataset that only updates once daily. Snowflake automatically caches the results of each query for 24 hours, and subsequent identical queries can retrieve results from the cache instead of re-executing the query. Since the data only changes during the nightly batch process, cached results remain valid throughout the day. This provides the fastest possible response time for repeated queries without consuming additional compute resources, making it ideal for reporting systems with frequent, identical queries against relatively static data.*"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "Query result cache would provide the best performance for a reporting system that repeatedly queries the same dataset that only updates once daily. Snowflake automatically caches the results of each query for 24 hours, and subsequent identical queries can retrieve results from the cache instead of re-executing the query. Since the data only changes during the nightly batch process, cached results remain valid throughout the day. This provides the fastest possible response time for repeated queries without consuming additional compute resources, making it ideal for reporting systems with frequent, identical queries against relatively static data.*"
+    },
+    {
+      "id": 30,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer is working with a table that contains both hot and cold data, where queries typically only access the most recent data. Which approach would optimize both storage costs and query performance?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Implement a clustering key on the date column"
+        },
+        {
+          "id": "B",
+          "text": "Use table partitioning to separate hot and cold data"
+        },
+        {
+          "id": "C",
+          "text": "Create a materialized view for the hot data"
+        },
+        {
+          "id": "D",
+          "text": "Implement a data retention policy using Time Travel"
+        },
+        {
+          "id": "A",
+          "text": "Implement a clustering key on the date column**\n\n*Explanation: Implementing a clustering key on the date column is the most effective approach for optimizing both storage costs and query performance when working with hot and cold data in the same table. Clustering ensures that recent (hot) data is co-located in the same micro-partitions, enabling efficient pruning when queries filter on recent dates. This significantly improves query performance by reducing the amount of data scanned. Additionally, Snowflake's automatic clustering maintenance focuses on the most frequently accessed micro-partitions, naturally optimizing for hot data access patterns while minimizing maintenance overhead for cold data regions.*"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "Implementing a clustering key on the date column is the most effective approach for optimizing both storage costs and query performance when working with hot and cold data in the same table. Clustering ensures that recent (hot) data is co-located in the same micro-partitions, enabling efficient pruning when queries filter on recent dates. This significantly improves query performance by reducing the amount of data scanned. Additionally, Snowflake's automatic clustering maintenance focuses on the most frequently accessed micro-partitions, naturally optimizing for hot data access patterns while minimizing maintenance overhead for cold data regions.*"
+    },
+    {
+      "id": 31,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer notices that a query with a JOIN operation is performing poorly. The query profile shows that one of the joined tables is being broadcast to all nodes. Which condition would cause Snowflake to choose a broadcast join strategy?",
+      "options": [
+        {
+          "id": "A",
+          "text": "When joining tables of similar size"
+        },
+        {
+          "id": "B",
+          "text": "When one table is significantly smaller than the other"
+        },
+        {
+          "id": "C",
+          "text": "When both tables have clustering keys"
+        },
+        {
+          "id": "D",
+          "text": "When the join is on a non-equality condition"
+        },
+        {
+          "id": "B",
+          "text": "When one table is significantly smaller than the other**\n\n*Explanation: Snowflake chooses a broadcast join strategy when one table is significantly smaller than the other. In this approach, the smaller table is broadcast (copied) to all compute nodes where the larger table's data resides. This eliminates the need to shuffle the larger table's data across the network, which would be more expensive. Broadcast joins are efficient when the smaller table can fit comfortably in memory. Understanding when Snowflake uses this strategy helps in designing efficient joins and interpreting query profiles to diagnose performance issues.*"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "Snowflake chooses a broadcast join strategy when one table is significantly smaller than the other. In this approach, the smaller table is broadcast (copied) to all compute nodes where the larger table's data resides. This eliminates the need to shuffle the larger table's data across the network, which would be more expensive. Broadcast joins are efficient when the smaller table can fit comfortably in memory. Understanding when Snowflake uses this strategy helps in designing efficient joins and interpreting query profiles to diagnose performance issues.*"
+    },
+    {
+      "id": 32,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer accidentally dropped a critical table and needs to recover it. The table was dropped 3 days ago, and the Time Travel retention period is set to the default value. Can the table be recovered?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Yes, using the UNDROP command"
+        },
+        {
+          "id": "B",
+          "text": "No, the default Time Travel retention period is only 1 day"
+        },
+        {
+          "id": "C",
+          "text": "Yes, using the CLONE command with a timestamp"
+        },
+        {
+          "id": "D",
+          "text": "No, dropped tables cannot be recovered"
+        },
+        {
+          "id": "B",
+          "text": "No, the default Time Travel retention period is only 1 day**\n\n*Explanation: The default Time Travel retention period in Snowflake is 1 day (24 hours), so a table dropped 3 days ago cannot be recovered using Time Travel features. Time Travel allows access to data that has been changed or deleted within the retention period, but once that period expires, the data moves to Fail-safe (which is not user-accessible). To enable recovery beyond the default period, the Time Travel retention would need to have been explicitly extended (up to 90 days with Enterprise Edition) before the table was dropped.*"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "The default Time Travel retention period in Snowflake is 1 day (24 hours), so a table dropped 3 days ago cannot be recovered using Time Travel features. Time Travel allows access to data that has been changed or deleted within the retention period, but once that period expires, the data moves to Fail-safe (which is not user-accessible). To enable recovery beyond the default period, the Time Travel retention would need to have been explicitly extended (up to 90 days with Enterprise Edition) before the table was dropped.*"
+    },
+    {
+      "id": 33,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer needs to implement a solution that allows querying historical data as of specific points in time within the last 60 days. Which Snowflake feature and edition should be used?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Time Travel with Standard Edition"
+        },
+        {
+          "id": "B",
+          "text": "Time Travel with Enterprise Edition"
+        },
+        {
+          "id": "C",
+          "text": "Fail-safe with Standard Edition"
+        },
+        {
+          "id": "D",
+          "text": "Zero-copy cloning with any edition"
+        },
+        {
+          "id": "B",
+          "text": "Time Travel with Enterprise Edition**\n\n*Explanation: Time Travel with Enterprise Edition is the correct solution for querying historical data within the last 60 days. Snowflake's Enterprise Edition allows extending the Time Travel retention period up to 90 days, while Standard Edition limits it to just 1 day. Time Travel enables querying data as it existed at specific points in time using the AT or BEFORE clause in queries. This feature is ideal for historical analysis, auditing, and recovering from data errors or corruption. Fail-safe is not user-accessible, and zero-copy cloning creates a new object rather than providing temporal query capabilities.*"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "Time Travel with Enterprise Edition is the correct solution for querying historical data within the last 60 days. Snowflake's Enterprise Edition allows extending the Time Travel retention period up to 90 days, while Standard Edition limits it to just 1 day. Time Travel enables querying data as it existed at specific points in time using the AT or BEFORE clause in queries. This feature is ideal for historical analysis, auditing, and recovering from data errors or corruption. Fail-safe is not user-accessible, and zero-copy cloning creates a new object rather than providing temporal query capabilities.*"
+    },
+    {
+      "id": 34,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer needs to create a development environment with a copy of a production database for testing. The copy should not consume additional storage space initially but should allow independent modifications. Which Snowflake feature should be used?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Database replication"
+        },
+        {
+          "id": "B",
+          "text": "Zero-copy cloning"
+        },
+        {
+          "id": "C",
+          "text": "Time Travel"
+        },
+        {
+          "id": "D",
+          "text": "Fail-safe"
+        },
+        {
+          "id": "B",
+          "text": "Zero-copy cloning**\n\n*Explanation: Zero-copy cloning is the ideal feature for creating a development environment that initially shares storage with production but allows independent modifications. When a clone is created, it references the same micro-partitions as the source object without duplicating data. Only when changes are made to either the source or the clone does Snowflake create new micro-partitions to store the differences. This provides storage efficiency while allowing the development environment to diverge from production as needed. This approach is perfect for testing, development, and what-if scenarios without incurring significant additional storage costs.*"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "Zero-copy cloning is the ideal feature for creating a development environment that initially shares storage with production but allows independent modifications. When a clone is created, it references the same micro-partitions as the source object without duplicating data. Only when changes are made to either the source or the clone does Snowflake create new micro-partitions to store the differences. This provides storage efficiency while allowing the development environment to diverge from production as needed. This approach is perfect for testing, development, and what-if scenarios without incurring significant additional storage costs.*"
+    },
+    {
+      "id": 35,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer needs to ensure that data can be recovered in case of accidental deletion or corruption. Which combination of Snowflake features provides the longest possible recovery window?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Time Travel (90 days) + Fail-safe (7 days)"
+        },
+        {
+          "id": "B",
+          "text": "Time Travel (1 day) + Fail-safe (7 days)"
+        },
+        {
+          "id": "C",
+          "text": "Time Travel (90 days) + Database replication"
+        },
+        {
+          "id": "D",
+          "text": "Zero-copy cloning + Time Travel (1 day)"
+        },
+        {
+          "id": "A",
+          "text": "Time Travel (90 days) + Fail-safe (7 days)**\n\n*Explanation: The combination of Time Travel set to its maximum of 90 days (available in Enterprise Edition) plus the automatic 7-day Fail-safe period provides the longest possible recovery window in Snowflake, totaling 97 days. Time Travel allows user-controlled recovery of dropped or modified objects within its retention period, while Fail-safe is an additional 7-day period after Time Travel expiration during which Snowflake can recover data (though this requires contacting Snowflake Support). This combination maximizes data protection against accidental deletion or corruption while balancing storage costs.*"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "The combination of Time Travel set to its maximum of 90 days (available in Enterprise Edition) plus the automatic 7-day Fail-safe period provides the longest possible recovery window in Snowflake, totaling 97 days. Time Travel allows user-controlled recovery of dropped or modified objects within its retention period, while Fail-safe is an additional 7-day period after Time Travel expiration during which Snowflake can recover data (though this requires contacting Snowflake Support). This combination maximizes data protection against accidental deletion or corruption while balancing storage costs.*"
+    },
+    {
+      "id": 36,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer needs to implement a solution to protect against ransomware attacks that might corrupt data in Snowflake. Which approach provides the best protection?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Implement column-level encryption"
+        },
+        {
+          "id": "B",
+          "text": "Set a longer Time Travel retention period"
+        },
+        {
+          "id": "C",
+          "text": "Create regular database clones with different ownership"
+        },
+        {
+          "id": "D",
+          "text": "Enable multi-factor authentication"
+        },
+        {
+          "id": "C",
+          "text": "Create regular database clones with different ownership**\n\n*Explanation: Creating regular database clones with different ownership provides the best protection against ransomware attacks that might corrupt data in Snowflake. By maintaining clones with different ownership and restricted access permissions, you create isolated copies that would remain unaffected if the primary data were compromised. This approach creates an \"air gap\" between production data and backups, ensuring that malicious actions affecting one copy cannot propagate to others. While Time Travel helps with recovery, it doesn't protect against systematic corruption if an attacker gains access to your account. The clone approach provides a more robust defense-in-depth strategy.*"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "Creating regular database clones with different ownership provides the best protection against ransomware attacks that might corrupt data in Snowflake. By maintaining clones with different ownership and restricted access permissions, you create isolated copies that would remain unaffected if the primary data were compromised. This approach creates an \"air gap\" between production data and backups, ensuring that malicious actions affecting one copy cannot propagate to others. While Time Travel helps with recovery, it doesn't protect against systematic corruption if an attacker gains access to your account. The clone approach provides a more robust defense-in-depth strategy.*"
+    },
+    {
+      "id": 37,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer needs to implement a cost-effective solution for long-term storage of historical data that is rarely accessed but must remain queryable. Which approach should be used?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Export data to external storage and create external tables"
+        },
+        {
+          "id": "B",
+          "text": "Maintain data in Snowflake with extended Time Travel"
+        },
+        {
+          "id": "C",
+          "text": "Create a separate database with a smaller warehouse"
+        },
+        {
+          "id": "D",
+          "text": "Implement automatic clustering on time-based columns"
+        },
+        {
+          "id": "A",
+          "text": "Export data to external storage and create external tables**\n\n*Explanation: Exporting rarely accessed historical data to external storage (like S3, Azure Blob, or GCS) and creating external tables is the most cost-effective solution for long-term queryable storage. This approach leverages Snowflake's external tables feature, which allows querying data stored in cloud storage without loading it into Snowflake storage. Since Snowflake storage costs are higher than raw cloud storage costs, this significantly reduces storage expenses for cold data while maintaining query capabilities. When the data needs to be queried, Snowflake can access it directly from external storage, though with somewhat reduced performance compared to internal tables.*"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "Exporting rarely accessed historical data to external storage (like S3, Azure Blob, or GCS) and creating external tables is the most cost-effective solution for long-term queryable storage. This approach leverages Snowflake's external tables feature, which allows querying data stored in cloud storage without loading it into Snowflake storage. Since Snowflake storage costs are higher than raw cloud storage costs, this significantly reduces storage expenses for cold data while maintaining query capabilities. When the data needs to be queried, Snowflake can access it directly from external storage, though with somewhat reduced performance compared to internal tables.*"
+    },
+    {
+      "id": 38,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer is designing a data retention strategy and needs to understand the difference between Time Travel and Fail-safe. Which statement is correct?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Both Time Travel and Fail-safe data can be accessed directly by users"
+        },
+        {
+          "id": "B",
+          "text": "Time Travel is user-configurable, while Fail-safe is fixed at 7 days"
+        },
+        {
+          "id": "C",
+          "text": "Fail-safe provides faster data recovery than Time Travel"
+        },
+        {
+          "id": "D",
+          "text": "Time Travel is only available in Enterprise Edition"
+        },
+        {
+          "id": "B",
+          "text": "Time Travel is user-configurable, while Fail-safe is fixed at 7 days**\n\n*Explanation: The correct statement is that Time Travel is user-configurable (1-90 days depending on edition), while Fail-safe is fixed at 7 days. Time Travel retention can be set at the account, database, schema, or table level, giving users control over the recovery window based on business needs and cost considerations. In contrast, Fail-safe is a fixed 7-day period that begins after Time Travel retention expires and cannot be modified. Additionally, Time Travel data is directly accessible by users, while Fail-safe data can only be recovered by Snowflake Support, making this a key distinction in recovery capabilities and planning.*"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "The correct statement is that Time Travel is user-configurable (1-90 days depending on edition), while Fail-safe is fixed at 7 days. Time Travel retention can be set at the account, database, schema, or table level, giving users control over the recovery window based on business needs and cost considerations. In contrast, Fail-safe is a fixed 7-day period that begins after Time Travel retention expires and cannot be modified. Additionally, Time Travel data is directly accessible by users, while Fail-safe data can only be recovered by Snowflake Support, making this a key distinction in recovery capabilities and planning.*"
+    },
+    {
+      "id": 39,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer needs to create a backup of a production database that will not be affected by changes to the source database and will persist beyond the Time Travel retention period. Which approach should be used?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Create a zero-copy clone of the database"
+        },
+        {
+          "id": "B",
+          "text": "Use CREATE DATABASE ... CLONE"
+        },
+        {
+          "id": "C",
+          "text": "Export the database to external storage"
+        },
+        {
+          "id": "D",
+          "text": "Set a longer Time Travel retention period"
+        },
+        {
+          "id": "A",
+          "text": "Create a zero-copy clone of the database**\n\n*Explanation: Creating a zero-copy clone of the database is the most appropriate approach for creating a persistent backup that's unaffected by changes to the source. Once created, a clone is independent of its source - changes to the source don't affect the clone, and the clone persists regardless of what happens to the source, including beyond Time Travel retention periods. While \"CREATE DATABASE ... CLONE\" is the specific syntax used, the conceptual answer focuses on the cloning approach. This provides a complete, queryable backup with minimal storage overhead, as only the differences between the clone and source consume additional storage.*"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "Creating a zero-copy clone of the database is the most appropriate approach for creating a persistent backup that's unaffected by changes to the source. Once created, a clone is independent of its source - changes to the source don't affect the clone, and the clone persists regardless of what happens to the source, including beyond Time Travel retention periods. While \"CREATE DATABASE ... CLONE\" is the specific syntax used, the conceptual answer focuses on the cloning approach. This provides a complete, queryable backup with minimal storage overhead, as only the differences between the clone and source consume additional storage.*"
+    },
+    {
+      "id": 40,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer needs to implement a solution that allows for recovering a table to any point in time within the last 30 days. The organization uses Snowflake Standard Edition. What should the data engineer do?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Enable Time Travel with a 30-day retention period"
+        },
+        {
+          "id": "B",
+          "text": "Upgrade to Enterprise Edition to extend Time Travel beyond 1 day"
+        },
+        {
+          "id": "C",
+          "text": "Create daily snapshots using zero-copy clones"
+        },
+        {
+          "id": "D",
+          "text": "Use Fail-safe for point-in-time recovery"
+        },
+        {
+          "id": "B",
+          "text": "Upgrade to Enterprise Edition to extend Time Travel beyond 1 day**\n\n*Explanation: To enable point-in-time recovery within the last 30 days, the organization needs to upgrade to Enterprise Edition. Standard Edition limits Time Travel retention to a maximum of 1 day, which doesn't meet the 30-day requirement. Enterprise Edition allows extending Time Travel retention up to 90 days, enabling the required 30-day recovery window. While creating daily snapshots with clones could provide discrete recovery points, it wouldn't allow recovery to any point in time. Fail-safe is not user-accessible and doesn't provide point-in-time recovery capabilities.*"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "To enable point-in-time recovery within the last 30 days, the organization needs to upgrade to Enterprise Edition. Standard Edition limits Time Travel retention to a maximum of 1 day, which doesn't meet the 30-day requirement. Enterprise Edition allows extending Time Travel retention up to 90 days, enabling the required 30-day recovery window. While creating daily snapshots with clones could provide discrete recovery points, it wouldn't allow recovery to any point in time. Fail-safe is not user-accessible and doesn't provide point-in-time recovery capabilities.*"
+    },
+    {
+      "id": 41,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer needs to implement a solution that allows specific users to see only masked versions of sensitive columns in a customer table, while allowing analysts to see the actual data. Which Snowflake feature should be used?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Row-level security"
+        },
+        {
+          "id": "B",
+          "text": "Column-level security"
+        },
+        {
+          "id": "C",
+          "text": "Dynamic data masking"
+        },
+        {
+          "id": "D",
+          "text": "Secure views"
+        },
+        {
+          "id": "C",
+          "text": "Dynamic data masking**\n\n*Explanation: Dynamic data masking is the most appropriate feature for this requirement. It allows defining masking policies that show different versions of the same data to different users based on their roles and privileges. Unlike column-level security which simply grants or denies access to entire columns, dynamic masking allows some users to see the actual data while others see masked versions (like partial credit card numbers or anonymized values). This provides fine-grained access control without duplicating data or creating multiple views, making it ideal for scenarios where different user groups need different levels of access to sensitive information.*"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "Dynamic data masking is the most appropriate feature for this requirement. It allows defining masking policies that show different versions of the same data to different users based on their roles and privileges. Unlike column-level security which simply grants or denies access to entire columns, dynamic masking allows some users to see the actual data while others see masked versions (like partial credit card numbers or anonymized values). This provides fine-grained access control without duplicating data or creating multiple views, making it ideal for scenarios where different user groups need different levels of access to sensitive information.*"
+    },
+    {
+      "id": 42,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer needs to implement a security model where users can only see customer data for their assigned region. Which Snowflake feature should be used?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Role-based access control"
+        },
+        {
+          "id": "B",
+          "text": "Column-level security"
+        },
+        {
+          "id": "C",
+          "text": "Row-level security"
+        },
+        {
+          "id": "D",
+          "text": "Secure views with session variables"
+        },
+        {
+          "id": "C",
+          "text": "Row-level security**\n\n*Explanation: Row-level security is the most appropriate feature for restricting access to customer data based on a user's assigned region. This feature allows defining security policies that filter rows dynamically based on attributes of the current session (like the user's region assignment). When users query the table, they only see rows that match their authorized regions. This provides fine-grained access control at the row level without requiring separate tables or views for each region, making it ideal for implementing data segregation based on attributes like region, department, or customer.*"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "Row-level security is the most appropriate feature for restricting access to customer data based on a user's assigned region. This feature allows defining security policies that filter rows dynamically based on attributes of the current session (like the user's region assignment). When users query the table, they only see rows that match their authorized regions. This provides fine-grained access control at the row level without requiring separate tables or views for each region, making it ideal for implementing data segregation based on attributes like region, department, or customer.*"
+    },
+    {
+      "id": 43,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer needs to share sensitive data with a partner organization that doesn't have a Snowflake account. Which approach provides the most secure method for sharing this data?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Create a reader account for the partner"
+        },
+        {
+          "id": "B",
+          "text": "Export the data to a secure FTP server"
+        },
+        {
+          "id": "C",
+          "text": "Use Snowflake Data Exchange"
+        },
+        {
+          "id": "D",
+          "text": "Create database shares with IP restrictions"
+        },
+        {
+          "id": "A",
+          "text": "Create a reader account for the partner**\n\n*Explanation: Creating a reader account is the most secure method for sharing sensitive data with a partner organization that doesn't have a Snowflake account. A reader account is a special type of Snowflake account that allows external organizations to securely access shared data without needing their own full Snowflake account. The data provider maintains control over what data is shared and can revoke access at any time. This approach keeps the data within Snowflake's secure environment, eliminating the risks associated with exporting data, while providing a controlled, auditable access method for external partners.*"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "Creating a reader account is the most secure method for sharing sensitive data with a partner organization that doesn't have a Snowflake account. A reader account is a special type of Snowflake account that allows external organizations to securely access shared data without needing their own full Snowflake account. The data provider maintains control over what data is shared and can revoke access at any time. This approach keeps the data within Snowflake's secure environment, eliminating the risks associated with exporting data, while providing a controlled, auditable access method for external partners.*"
+    },
+    {
+      "id": 44,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer needs to implement a solution that automatically classifies and tags sensitive data in new tables as they are created. Which approach should be used?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Implement tag-based masking policies"
+        },
+        {
+          "id": "B",
+          "text": "Use Snowflake's automatic classification service"
+        },
+        {
+          "id": "C",
+          "text": "Create a stored procedure triggered on table creation"
+        },
+        {
+          "id": "D",
+          "text": "Implement column-level security policies"
+        },
+        {
+          "id": "C",
+          "text": "Create a stored procedure triggered on table creation**\n\n*Explanation: Creating a stored procedure triggered on table creation is the most effective approach for automatically classifying and tagging sensitive data in new tables. This procedure can analyze column names, sample data, or metadata to identify potentially sensitive information and apply appropriate tags. By registering this procedure to execute automatically when new tables are created (using event notifications or regular scheduled tasks), the data engineer can ensure consistent classification without manual intervention. This programmatic approach provides flexibility to implement custom classification logic while leveraging Snowflake's native tagging capabilities for governance.*"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "Creating a stored procedure triggered on table creation is the most effective approach for automatically classifying and tagging sensitive data in new tables. This procedure can analyze column names, sample data, or metadata to identify potentially sensitive information and apply appropriate tags. By registering this procedure to execute automatically when new tables are created (using event notifications or regular scheduled tasks), the data engineer can ensure consistent classification without manual intervention. This programmatic approach provides flexibility to implement custom classification logic while leveraging Snowflake's native tagging capabilities for governance.*"
+    },
+    {
+      "id": 45,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer needs to implement a solution that prevents any single user from accessing both a customer's personally identifiable information (PII) and their financial transaction data. Which approach should be used?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Implement column-level security with mutually exclusive roles"
+        },
+        {
+          "id": "B",
+          "text": "Create separate secure views for PII and transaction data"
+        },
+        {
+          "id": "C",
+          "text": "Use dynamic data masking with role-based policies"
+        },
+        {
+          "id": "D",
+          "text": "Implement row-level security based on user attributes"
+        },
+        {
+          "id": "A",
+          "text": "Implement column-level security with mutually exclusive roles**\n\n*Explanation: Implementing column-level security with mutually exclusive roles is the most effective approach for enforcing separation of duties between PII and financial transaction data. By creating roles that have access to either PII columns or financial transaction columns, but never both, and ensuring users can only activate one of these roles at a time, the data engineer can enforce strict segregation of access. This approach directly addresses the requirement to prevent any single user from accessing both types of sensitive data simultaneously, implementing a fundamental security principle known as separation of duties.*"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "Implementing column-level security with mutually exclusive roles is the most effective approach for enforcing separation of duties between PII and financial transaction data. By creating roles that have access to either PII columns or financial transaction columns, but never both, and ensuring users can only activate one of these roles at a time, the data engineer can enforce strict segregation of access. This approach directly addresses the requirement to prevent any single user from accessing both types of sensitive data simultaneously, implementing a fundamental security principle known as separation of duties.*"
+    },
+    {
+      "id": 46,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer needs to audit all query access to tables containing sensitive customer data. Which Snowflake feature should be used?",
+      "options": [
+        {
+          "id": "A",
+          "text": "ACCOUNT_USAGE.ACCESS_HISTORY"
+        },
+        {
+          "id": "B",
+          "text": "ACCOUNT_USAGE.QUERY_HISTORY"
+        },
+        {
+          "id": "C",
+          "text": "Snowflake's automatic audit logging"
+        },
+        {
+          "id": "D",
+          "text": "Custom logging with stored procedures"
+        },
+        {
+          "id": "B",
+          "text": "ACCOUNT_USAGE.QUERY_HISTORY**\n\n*Explanation: ACCOUNT_USAGE.QUERY_HISTORY is the most appropriate feature for auditing query access to sensitive tables. This view in the Snowflake shared database contains a record of all queries executed in the account, including the SQL text, user information, timestamp, and affected objects. By querying this view with filters for the sensitive tables, the data engineer can create comprehensive audit reports showing who accessed what data and when. This built-in capability provides the necessary visibility for compliance and security monitoring without requiring custom implementation, making it the most direct solution for the auditing requirement.*"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "ACCOUNT_USAGE.QUERY_HISTORY is the most appropriate feature for auditing query access to sensitive tables. This view in the Snowflake shared database contains a record of all queries executed in the account, including the SQL text, user information, timestamp, and affected objects. By querying this view with filters for the sensitive tables, the data engineer can create comprehensive audit reports showing who accessed what data and when. This built-in capability provides the necessary visibility for compliance and security monitoring without requiring custom implementation, making it the most direct solution for the auditing requirement.*"
+    },
+    {
+      "id": 47,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer needs to implement a solution that allows granting access to all tables in a schema without explicitly naming each table, including tables that will be created in the future. Which approach should be used?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Use GRANT SELECT ON ALL TABLES IN SCHEMA"
+        },
+        {
+          "id": "B",
+          "text": "Create a role hierarchy with schema ownership"
+        },
+        {
+          "id": "C",
+          "text": "Use GRANT SELECT ON FUTURE TABLES IN SCHEMA"
+        },
+        {
+          "id": "D",
+          "text": "Implement managed access schemas"
+        },
+        {
+          "id": "C",
+          "text": "Use GRANT SELECT ON FUTURE TABLES IN SCHEMA**\n\n*Explanation: Using GRANT SELECT ON FUTURE TABLES IN SCHEMA is the correct approach for granting access to all tables in a schema, including those that will be created in the future. This command specifically grants the specified privilege on all tables that will be created in the schema after the grant is issued. Combined with a separate grant for existing tables (GRANT SELECT ON ALL TABLES IN SCHEMA), this ensures comprehensive access without requiring manual grants for each new table. This approach simplifies privilege management in dynamic environments where tables are frequently created or modified.*"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "Using GRANT SELECT ON FUTURE TABLES IN SCHEMA is the correct approach for granting access to all tables in a schema, including those that will be created in the future. This command specifically grants the specified privilege on all tables that will be created in the schema after the grant is issued. Combined with a separate grant for existing tables (GRANT SELECT ON ALL TABLES IN SCHEMA), this ensures comprehensive access without requiring manual grants for each new table. This approach simplifies privilege management in dynamic environments where tables are frequently created or modified.*"
+    },
+    {
+      "id": 48,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer needs to implement a solution that allows tracking the lineage of data as it moves through various transformations in Snowflake. Which feature or approach should be used?",
+      "options": [
+        {
+          "id": "A",
+          "text": "INFORMATION_SCHEMA.TABLE_STORAGE_METRICS"
+        },
+        {
+          "id": "B",
+          "text": "ACCOUNT_USAGE.ACCESS_HISTORY"
+        },
+        {
+          "id": "C",
+          "text": "Object tagging with custom metadata"
+        },
+        {
+          "id": "D",
+          "text": "Snowflake's native data lineage tracking"
+        },
+        {
+          "id": "C",
+          "text": "Object tagging with custom metadata**\n\n*Explanation: Object tagging with custom metadata is the most effective approach for tracking data lineage in Snowflake. By creating and applying tags that document source systems, transformation steps, data quality checks, and other lineage information to databases, schemas, tables, and columns, the data engineer can implement a comprehensive lineage tracking system. These tags can be queried through Snowflake's metadata views to generate lineage reports and diagrams. While Snowflake doesn't have native end-to-end lineage tracking, this tagging approach leverages Snowflake's metadata capabilities to implement a flexible, queryable lineage solution.*"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "Object tagging with custom metadata is the most effective approach for tracking data lineage in Snowflake. By creating and applying tags that document source systems, transformation steps, data quality checks, and other lineage information to databases, schemas, tables, and columns, the data engineer can implement a comprehensive lineage tracking system. These tags can be queried through Snowflake's metadata views to generate lineage reports and diagrams. While Snowflake doesn't have native end-to-end lineage tracking, this tagging approach leverages Snowflake's metadata capabilities to implement a flexible, queryable lineage solution.*"
+    },
+    {
+      "id": 49,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer needs to implement a solution that ensures all copies of production data used in development environments have sensitive customer information automatically masked. Which approach should be used?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Create secure views of production for development use"
+        },
+        {
+          "id": "B",
+          "text": "Implement dynamic data masking policies on production tables"
+        },
+        {
+          "id": "C",
+          "text": "Use post-clone scripts to apply masking when cloning databases"
+        },
+        {
+          "id": "D",
+          "text": "Create separate ETL processes for development data"
+        },
+        {
+          "id": "C",
+          "text": "Use post-clone scripts to apply masking when cloning databases**\n\n*Explanation: Using post-clone scripts to apply masking when cloning databases is the most effective approach for ensuring sensitive data is automatically masked in development environments. Post-clone scripts execute automatically after a database is cloned, allowing the data engineer to apply masking policies, remove sensitive data, or transform values specifically in the cloned environment. This approach ensures that all development copies created through cloning have consistent masking applied without affecting the production environment or requiring manual intervention. It provides a systematic, automated solution for protecting sensitive data in non-production environments.*"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "Using post-clone scripts to apply masking when cloning databases is the most effective approach for ensuring sensitive data is automatically masked in development environments. Post-clone scripts execute automatically after a database is cloned, allowing the data engineer to apply masking policies, remove sensitive data, or transform values specifically in the cloned environment. This approach ensures that all development copies created through cloning have consistent masking applied without affecting the production environment or requiring manual intervention. It provides a systematic, automated solution for protecting sensitive data in non-production environments.*"
+    },
+    {
+      "id": 50,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer needs to implement a solution that executes a series of dependent data transformation steps in sequence, with each step starting only after the previous step successfully completes. Which Snowflake feature should be used?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Stored procedures"
+        },
+        {
+          "id": "B",
+          "text": "User-defined functions"
+        },
+        {
+          "id": "C",
+          "text": "Tasks with dependencies"
+        },
+        {
+          "id": "D",
+          "text": "Streams with triggers"
+        },
+        {
+          "id": "C",
+          "text": "Tasks with dependencies**\n\n*Explanation: Tasks with dependencies is the most appropriate feature for implementing sequential, dependent data transformation steps in Snowflake. Tasks allow scheduling SQL commands or stored procedures to run at defined intervals or in response to events. By creating a DAG (directed acyclic graph) of tasks with predecessor/successor relationships, the data engineer can ensure that each step only executes after its predecessor successfully completes. This provides a native, serverless orchestration solution within Snowflake for managing complex transformation workflows with proper dependency management and error handling.*"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "Tasks with dependencies is the most appropriate feature for implementing sequential, dependent data transformation steps in Snowflake. Tasks allow scheduling SQL commands or stored procedures to run at defined intervals or in response to events. By creating a DAG (directed acyclic graph) of tasks with predecessor/successor relationships, the data engineer can ensure that each step only executes after its predecessor successfully completes. This provides a native, serverless orchestration solution within Snowflake for managing complex transformation workflows with proper dependency management and error handling.*"
+    },
+    {
+      "id": 51,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer needs to implement a solution that captures changes to a source table and applies them to a target table incrementally. Which Snowflake feature should be used?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Zero-copy cloning"
+        },
+        {
+          "id": "B",
+          "text": "Time Travel"
+        },
+        {
+          "id": "C",
+          "text": "Streams"
+        },
+        {
+          "id": "D",
+          "text": "External tables"
+        },
+        {
+          "id": "C",
+          "text": "Streams**\n\n*Explanation: Streams is the most appropriate Snowflake feature for capturing and applying incremental changes from a source table to a target table. Streams track DML changes (inserts, updates, deletes) to a table and make those changes available for processing. When combined with tasks, streams enable building efficient change data capture (CDC) pipelines that only process modified data rather than reprocessing the entire dataset. This approach minimizes processing overhead and ensures that the target table stays synchronized with the source while only processing the delta of changes, making it ideal for incremental data transformation scenarios.*"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "Streams is the most appropriate Snowflake feature for capturing and applying incremental changes from a source table to a target table. Streams track DML changes (inserts, updates, deletes) to a table and make those changes available for processing. When combined with tasks, streams enable building efficient change data capture (CDC) pipelines that only process modified data rather than reprocessing the entire dataset. This approach minimizes processing overhead and ensures that the target table stays synchronized with the source while only processing the delta of changes, making it ideal for incremental data transformation scenarios.*"
+    },
+    {
+      "id": 52,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer needs to implement complex data transformations that require procedural logic, loops, and error handling. Which Snowflake feature should be used?",
+      "options": [
+        {
+          "id": "A",
+          "text": "SQL UDFs"
+        },
+        {
+          "id": "B",
+          "text": "Stored procedures"
+        },
+        {
+          "id": "C",
+          "text": "Tasks"
+        },
+        {
+          "id": "D",
+          "text": "Streams"
+        },
+        {
+          "id": "B",
+          "text": "Stored procedures**\n\n*Explanation: Stored procedures are the most appropriate feature for implementing complex data transformations requiring procedural logic, loops, and error handling in Snowflake. Unlike SQL UDFs which are limited to returning a single value, stored procedures support full procedural programming with control structures (IF/ELSE, LOOP), error handling (TRY/CATCH), and multiple SQL operations. Snowflake supports stored procedures written in JavaScript, SQL, and other languages, providing the flexibility needed for complex transformation logic that goes beyond what can be expressed in standard SQL alone.*"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "Stored procedures are the most appropriate feature for implementing complex data transformations requiring procedural logic, loops, and error handling in Snowflake. Unlike SQL UDFs which are limited to returning a single value, stored procedures support full procedural programming with control structures (IF/ELSE, LOOP), error handling (TRY/CATCH), and multiple SQL operations. Snowflake supports stored procedures written in JavaScript, SQL, and other languages, providing the flexibility needed for complex transformation logic that goes beyond what can be expressed in standard SQL alone.*"
+    },
+    {
+      "id": 53,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer needs to implement a solution that automatically detects schema changes in a source table and propagates those changes to a target table. Which approach should be used?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Create a stored procedure that uses INFORMATION_SCHEMA to detect and apply changes"
+        },
+        {
+          "id": "B",
+          "text": "Use Snowflake Streams with schema evolution enabled"
+        },
+        {
+          "id": "C",
+          "text": "Implement dynamic views that automatically adapt to schema changes"
+        },
+        {
+          "id": "D",
+          "text": "Use VARIANT columns to store data in a schema-flexible format"
+        },
+        {
+          "id": "A",
+          "text": "Create a stored procedure that uses INFORMATION_SCHEMA to detect and apply changes**\n\n*Explanation: Creating a stored procedure that uses INFORMATION_SCHEMA to detect and apply schema changes is the most comprehensive approach for automatically propagating schema changes from source to target tables. By querying INFORMATION_SCHEMA.COLUMNS for both tables and comparing the results, the procedure can identify new, modified, or deleted columns and generate the appropriate ALTER TABLE statements to synchronize the target schema with the source. This programmatic approach provides complete control over how different types of schema changes are handled, including column additions, data type changes, and column removals, with appropriate error handling and logging.*"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "Creating a stored procedure that uses INFORMATION_SCHEMA to detect and apply schema changes is the most comprehensive approach for automatically propagating schema changes from source to target tables. By querying INFORMATION_SCHEMA.COLUMNS for both tables and comparing the results, the procedure can identify new, modified, or deleted columns and generate the appropriate ALTER TABLE statements to synchronize the target schema with the source. This programmatic approach provides complete control over how different types of schema changes are handled, including column additions, data type changes, and column removals, with appropriate error handling and logging.*"
+    },
+    {
+      "id": 54,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer needs to transform semi-structured JSON data stored in a VARIANT column into a relational format. Which SQL function should be used?",
+      "options": [
+        {
+          "id": "A",
+          "text": "PARSE_JSON"
+        },
+        {
+          "id": "B",
+          "text": "GET_PATH"
+        },
+        {
+          "id": "C",
+          "text": "FLATTEN"
+        },
+        {
+          "id": "D",
+          "text": "TO_JSON"
+        },
+        {
+          "id": "C",
+          "text": "FLATTEN**\n\n*Explanation: The FLATTEN function is the most appropriate choice for transforming semi-structured JSON data in a VARIANT column into a relational format. FLATTEN performs a lateral join that expands nested arrays into multiple rows, effectively normalizing hierarchical data into a tabular structure. When combined with other Snowflake JSON functions like GET, PARSE_JSON, or dot notation, FLATTEN enables comprehensive transformation of complex nested structures into relational tables. This is particularly useful for analytics on semi-structured data that needs to be joined with traditional relational data or analyzed using standard SQL aggregations and grouping operations.*"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "The FLATTEN function is the most appropriate choice for transforming semi-structured JSON data in a VARIANT column into a relational format. FLATTEN performs a lateral join that expands nested arrays into multiple rows, effectively normalizing hierarchical data into a tabular structure. When combined with other Snowflake JSON functions like GET, PARSE_JSON, or dot notation, FLATTEN enables comprehensive transformation of complex nested structures into relational tables. This is particularly useful for analytics on semi-structured data that needs to be joined with traditional relational data or analyzed using standard SQL aggregations and grouping operations.*"
+    },
+    {
+      "id": 55,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer needs to implement a solution that performs different transformations on data based on its source system. The logic for determining the transformation rules is complex. Which approach should be used?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Create separate transformation queries for each source system"
+        },
+        {
+          "id": "B",
+          "text": "Implement a JavaScript stored procedure with conditional logic"
+        },
+        {
+          "id": "C",
+          "text": "Use SQL CASE statements in a view"
+        },
+        {
+          "id": "D",
+          "text": "Create a lookup table with transformation rules"
+        },
+        {
+          "id": "B",
+          "text": "Implement a JavaScript stored procedure with conditional logic**\n\n*Explanation: Implementing a JavaScript stored procedure with conditional logic is the most flexible approach for handling complex transformation rules based on source systems. JavaScript stored procedures in Snowflake support sophisticated programming constructs, including complex conditional logic, custom functions, and external API calls if needed. This approach allows encapsulating the entire transformation logic in a single, maintainable procedure that can handle the complexity of different rules for different source systems, including edge cases and exceptions that might be difficult to express in pure SQL constructs like CASE statements.*"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "Implementing a JavaScript stored procedure with conditional logic is the most flexible approach for handling complex transformation rules based on source systems. JavaScript stored procedures in Snowflake support sophisticated programming constructs, including complex conditional logic, custom functions, and external API calls if needed. This approach allows encapsulating the entire transformation logic in a single, maintainable procedure that can handle the complexity of different rules for different source systems, including edge cases and exceptions that might be difficult to express in pure SQL constructs like CASE statements.*"
+    },
+    {
+      "id": 56,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer needs to implement a solution that performs data quality checks on transformed data before loading it into a target table. If the checks fail, the process should be halted and an alert should be sent. Which approach should be used?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Use a stored procedure with error handling and custom logging"
+        },
+        {
+          "id": "B",
+          "text": "Implement a stream to capture failed records"
+        },
+        {
+          "id": "C",
+          "text": "Create a task that checks data quality before loading"
+        },
+        {
+          "id": "D",
+          "text": "Use a secure view with row-level security to filter invalid data"
+        },
+        {
+          "id": "A",
+          "text": "Use a stored procedure with error handling and custom logging**\n\n*Explanation: Using a stored procedure with error handling and custom logging is the most comprehensive approach for implementing data quality checks with alerting capabilities. Stored procedures allow combining SQL validation queries with conditional logic to evaluate results, transaction control to commit or rollback based on quality checks, and integration with external alerting mechanisms through API calls or Snowflake features like notifications. This approach provides complete control over the validation process, error handling, and alerting workflow, making it ideal for implementing robust data quality gates in transformation pipelines.*"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "Using a stored procedure with error handling and custom logging is the most comprehensive approach for implementing data quality checks with alerting capabilities. Stored procedures allow combining SQL validation queries with conditional logic to evaluate results, transaction control to commit or rollback based on quality checks, and integration with external alerting mechanisms through API calls or Snowflake features like notifications. This approach provides complete control over the validation process, error handling, and alerting workflow, making it ideal for implementing robust data quality gates in transformation pipelines.*"
+    },
+    {
+      "id": 57,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer needs to implement a solution that maintains a slowly changing dimension (SCD) Type 2 for customer data, preserving the history of changes. Which approach should be used?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Use Snowflake Streams to capture changes and apply them with effective dates"
+        },
+        {
+          "id": "B",
+          "text": "Implement a MERGE statement that handles both inserts and updates"
+        },
+        {
+          "id": "C",
+          "text": "Create a view that uses Time Travel to show historical data"
+        },
+        {
+          "id": "D",
+          "text": "Use zero-copy cloning to create daily snapshots"
+        },
+        {
+          "id": "A",
+          "text": "Use Snowflake Streams to capture changes and apply them with effective dates**\n\n*Explanation: Using Snowflake Streams to capture changes and apply them with effective dates is the most efficient approach for implementing a Slowly Changing Dimension (SCD) Type 2. Streams automatically track changes to the source table, making it easy to identify records that need historical preservation. By combining streams with a transformation process that adds effective dates and end dates to records, the data engineer can efficiently implement SCD Type 2 semantics that maintain the complete history of changes while minimizing processing overhead by only handling changed records rather than reprocessing the entire dimension.*"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "Using Snowflake Streams to capture changes and apply them with effective dates is the most efficient approach for implementing a Slowly Changing Dimension (SCD) Type 2. Streams automatically track changes to the source table, making it easy to identify records that need historical preservation. By combining streams with a transformation process that adds effective dates and end dates to records, the data engineer can efficiently implement SCD Type 2 semantics that maintain the complete history of changes while minimizing processing overhead by only handling changed records rather than reprocessing the entire dimension.*"
+    },
+    {
+      "id": 58,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer needs to implement a solution that executes a complex transformation workflow on a schedule, with different steps running at different frequencies. Which approach should be used?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Create multiple independent tasks with different schedules"
+        },
+        {
+          "id": "B",
+          "text": "Use a single task with a CASE statement to determine which transformations to run"
+        },
+        {
+          "id": "C",
+          "text": "Implement a stored procedure that uses the current time to decide which steps to execute"
+        },
+        {
+          "id": "D",
+          "text": "Create a task tree with different schedules for different branches"
+        },
+        {
+          "id": "A",
+          "text": "Create multiple independent tasks with different schedules**\n\n*Explanation: Creating multiple independent tasks with different schedules is the most appropriate approach for implementing transformation steps that need to run at different frequencies. Each task can be configured with its own schedule expression (CRON format in Snowflake) to define exactly when it should execute, allowing for precise control over execution timing. This approach maintains separation of concerns between different transformation steps while leveraging Snowflake's native scheduling capabilities. For steps with dependencies, additional task relationships can be defined to ensure proper sequencing while still maintaining independent scheduling.*"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "Creating multiple independent tasks with different schedules is the most appropriate approach for implementing transformation steps that need to run at different frequencies. Each task can be configured with its own schedule expression (CRON format in Snowflake) to define exactly when it should execute, allowing for precise control over execution timing. This approach maintains separation of concerns between different transformation steps while leveraging Snowflake's native scheduling capabilities. For steps with dependencies, additional task relationships can be defined to ensure proper sequencing while still maintaining independent scheduling.*"
+    },
+    {
+      "id": 59,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer needs to implement a solution that performs complex string manipulations and regular expression operations as part of a data transformation pipeline. Which Snowflake feature provides the most comprehensive support for these operations?",
+      "options": [
+        {
+          "id": "A",
+          "text": "SQL UDFs"
+        },
+        {
+          "id": "B",
+          "text": "JavaScript UDFs"
+        },
+        {
+          "id": "C",
+          "text": "Built-in SQL string functions"
+        },
+        {
+          "id": "D",
+          "text": "External functions"
+        },
+        {
+          "id": "C",
+          "text": "Built-in SQL string functions**\n\n*Explanation: Snowflake's built-in SQL string functions provide the most comprehensive and efficient support for string manipulations and regular expression operations in data transformation pipelines. Snowflake offers a rich set of native functions including REGEXP_REPLACE, REGEXP_SUBSTR, SPLIT, TRANSLATE, and many others that can handle complex string transformations directly in SQL. These functions are optimized for performance within Snowflake's engine and can operate on entire columns of data in parallel. While JavaScript UDFs offer programming flexibility, the native SQL functions provide better performance and integration with Snowflake's optimization capabilities for large-scale data processing.*"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "Snowflake's built-in SQL string functions provide the most comprehensive and efficient support for string manipulations and regular expression operations in data transformation pipelines. Snowflake offers a rich set of native functions including REGEXP_REPLACE, REGEXP_SUBSTR, SPLIT, TRANSLATE, and many others that can handle complex string transformations directly in SQL. These functions are optimized for performance within Snowflake's engine and can operate on entire columns of data in parallel. While JavaScript UDFs offer programming flexibility, the native SQL functions provide better performance and integration with Snowflake's optimization capabilities for large-scale data processing.*"
+    },
+    {
+      "id": 60,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer needs to implement a solution that performs different transformations on data based on the current processing date, with special handling for month-end, quarter-end, and year-end processing. Which approach should be used?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Create separate tasks for each type of processing period"
+        },
+        {
+          "id": "B",
+          "text": "Use a stored procedure with date logic to determine the appropriate transformations"
+        },
+        {
+          "id": "C",
+          "text": "Implement a CASE statement in a SQL query based on date functions"
+        },
+        {
+          "id": "D",
+          "text": "Create a calendar reference table to look up processing types"
+        },
+        {
+          "id": "B",
+          "text": "Use a stored procedure with date logic to determine the appropriate transformations**\n\n*Explanation: Using a stored procedure with date logic is the most flexible approach for implementing different transformations based on the current processing date. A stored procedure can incorporate sophisticated date calculations to determine if the current date is a month-end, quarter-end, or year-end, and then execute the appropriate transformation logic for each scenario. This approach centralizes the date determination logic and transformation selection in a single, maintainable component while providing the procedural capabilities needed to handle complex conditional processing based on temporal patterns and exceptions.*"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "Using a stored procedure with date logic is the most flexible approach for implementing different transformations based on the current processing date. A stored procedure can incorporate sophisticated date calculations to determine if the current date is a month-end, quarter-end, or year-end, and then execute the appropriate transformation logic for each scenario. This approach centralizes the date determination logic and transformation selection in a single, maintainable component while providing the procedural capabilities needed to handle complex conditional processing based on temporal patterns and exceptions.*"
+    },
+    {
+      "id": 61,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer needs to implement a solution that performs aggregations on large datasets with high cardinality group-by columns. The aggregations need to be refreshed daily. Which approach would provide the best performance?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Create a materialized view with the aggregation logic"
+        },
+        {
+          "id": "B",
+          "text": "Use a task to calculate and store aggregates in a separate table"
+        },
+        {
+          "id": "C",
+          "text": "Implement a clustering key on the group-by columns"
+        },
+        {
+          "id": "D",
+          "text": "Use a JavaScript UDF to perform custom aggregations"
+        },
+        {
+          "id": "B",
+          "text": "Use a task to calculate and store aggregates in a separate table**\n\n*Explanation: Using a task to calculate and store aggregates in a separate table is the most effective approach for high-performance aggregations on large datasets with high cardinality group-by columns. This approach pre-computes the aggregations during a scheduled maintenance window and stores the results in a dedicated table optimized for query performance. Unlike materialized views which have certain limitations with complex aggregations, this approach provides complete control over the aggregation logic, indexing strategy, and refresh schedule. The task can be scheduled to run daily, ensuring the aggregated data is refreshed at the required frequency while minimizing the performance impact on user queries.*"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "Using a task to calculate and store aggregates in a separate table is the most effective approach for high-performance aggregations on large datasets with high cardinality group-by columns. This approach pre-computes the aggregations during a scheduled maintenance window and stores the results in a dedicated table optimized for query performance. Unlike materialized views which have certain limitations with complex aggregations, this approach provides complete control over the aggregation logic, indexing strategy, and refresh schedule. The task can be scheduled to run daily, ensuring the aggregated data is refreshed at the required frequency while minimizing the performance impact on user queries.*"
+    },
+    {
+      "id": 62,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer needs to implement a solution that transforms data from a third-party API and loads it into Snowflake. The API returns complex nested JSON structures. Which approach should be used?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Use Snowflake's REST API integration to directly query the third-party API"
+        },
+        {
+          "id": "B",
+          "text": "Create an external function that calls the API and processes the results"
+        },
+        {
+          "id": "C",
+          "text": "Use a serverless function to fetch, transform, and load the data via Snowflake's native connectors"
+        },
+        {
+          "id": "D",
+          "text": "Implement a JavaScript stored procedure that uses the Snowflake HTTP client to call the API"
+        },
+        {
+          "id": "D",
+          "text": "Implement a JavaScript stored procedure that uses the Snowflake HTTP client to call the API**\n\n*Explanation: Implementing a JavaScript stored procedure that uses the Snowflake HTTP client is the most direct approach for transforming data from a third-party API. Snowflake's JavaScript stored procedures can use the built-in HTTP client to make API calls, process the returned JSON using JavaScript's native JSON handling capabilities, and then insert the transformed data into Snowflake tables. This approach keeps the entire ETL process within Snowflake, eliminating the need for external components or data movement, while providing the programming flexibility needed to handle complex nested JSON structures and API-specific requirements.*"
+        }
+      ],
+      "correctAnswer": "D",
+      "explanation": "Implementing a JavaScript stored procedure that uses the Snowflake HTTP client is the most direct approach for transforming data from a third-party API. Snowflake's JavaScript stored procedures can use the built-in HTTP client to make API calls, process the returned JSON using JavaScript's native JSON handling capabilities, and then insert the transformed data into Snowflake tables. This approach keeps the entire ETL process within Snowflake, eliminating the need for external components or data movement, while providing the programming flexibility needed to handle complex nested JSON structures and API-specific requirements.*"
+    },
+    {
+      "id": 63,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer needs to implement a solution that performs complex window functions across multiple dimensions with different partition and order specifications. Which approach would provide the most maintainable solution?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Create multiple CTEs, each with a specific window function"
+        },
+        {
+          "id": "B",
+          "text": "Use subqueries with different GROUP BY clauses"
+        },
+        {
+          "id": "C",
+          "text": "Implement a JavaScript UDF that performs custom windowing"
+        },
+        {
+          "id": "D",
+          "text": "Create a stored procedure that generates dynamic SQL"
+        },
+        {
+          "id": "A",
+          "text": "Create multiple CTEs, each with a specific window function**\n\n*Explanation: Creating multiple Common Table Expressions (CTEs), each with a specific window function, provides the most maintainable solution for complex window calculations across multiple dimensions. This approach breaks down the complex logic into modular, readable components where each CTE handles a specific windowing operation with its own partition and order specifications. The final query can then join or combine these intermediate results as needed. This modular structure improves readability, debugging, and maintenance compared to nested subqueries or dynamic SQL approaches, while leveraging Snowflake's optimization capabilities for window functions.*"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "Creating multiple Common Table Expressions (CTEs), each with a specific window function, provides the most maintainable solution for complex window calculations across multiple dimensions. This approach breaks down the complex logic into modular, readable components where each CTE handles a specific windowing operation with its own partition and order specifications. The final query can then join or combine these intermediate results as needed. This modular structure improves readability, debugging, and maintenance compared to nested subqueries or dynamic SQL approaches, while leveraging Snowflake's optimization capabilities for window functions.*"
+    },
+    {
+      "id": 64,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer needs to implement a solution that performs data transformations requiring custom mathematical operations not available in standard SQL functions. Which approach should be used?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Create a SQL UDF with mathematical formulas"
+        },
+        {
+          "id": "B",
+          "text": "Implement a JavaScript UDF with custom algorithms"
+        },
+        {
+          "id": "C",
+          "text": "Use a Python UDF for advanced mathematical operations"
+        },
+        {
+          "id": "D",
+          "text": "Create a stored procedure with mathematical logic"
+        },
+        {
+          "id": "C",
+          "text": "Use a Python UDF for advanced mathematical operations**\n\n*Explanation: Using a Python UDF (User-Defined Function) is the most appropriate approach for implementing custom mathematical operations not available in standard SQL. Python UDFs in Snowflake allow leveraging Python's rich ecosystem of scientific and mathematical libraries like NumPy, SciPy, and pandas, which provide advanced mathematical capabilities beyond what's available in SQL or JavaScript. This approach combines the power of Python's mathematical libraries with Snowflake's data processing capabilities, enabling sophisticated calculations like statistical analysis, machine learning scoring, or complex mathematical algorithms to be applied directly within Snowflake queries.*"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "Using a Python UDF (User-Defined Function) is the most appropriate approach for implementing custom mathematical operations not available in standard SQL. Python UDFs in Snowflake allow leveraging Python's rich ecosystem of scientific and mathematical libraries like NumPy, SciPy, and pandas, which provide advanced mathematical capabilities beyond what's available in SQL or JavaScript. This approach combines the power of Python's mathematical libraries with Snowflake's data processing capabilities, enabling sophisticated calculations like statistical analysis, machine learning scoring, or complex mathematical algorithms to be applied directly within Snowflake queries.*"
+    },
+    {
+      "id": 65,
+      "domain": "Data Movement (17 questions)",
+      "text": "A data engineer needs to implement a solution that performs incremental data transformations on a large fact table, processing only new and changed records since the last run. Which combination of Snowflake features should be used?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Time Travel and zero-copy cloning"
+        },
+        {
+          "id": "B",
+          "text": "Streams and tasks"
+        },
+        {
+          "id": "C",
+          "text": "External tables with auto refresh"
+        },
+        {
+          "id": "D",
+          "text": "Materialized views with automatic clustering"
+        },
+        {
+          "id": "B",
+          "text": "Streams and tasks**\n\n*Explanation: The combination of streams and tasks is the most effective solution for implementing incremental data transformations. Streams capture the changes (inserts, updates, deletes) to the source table since the last processing run, enabling the transformation logic to process only the delta rather than the entire dataset. Tasks provide the scheduling and execution framework to run these incremental transformations automatically at defined intervals. This approach minimizes processing overhead and resource consumption while ensuring the target fact table stays current with source changes, making it ideal for large fact tables where full reprocessing would be prohibitively expensive.*"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "The combination of streams and tasks is the most effective solution for implementing incremental data transformations. Streams capture the changes (inserts, updates, deletes) to the source table since the last processing run, enabling the transformation logic to process only the delta rather than the entire dataset. Tasks provide the scheduling and execution framework to run these incremental transformations automatically at defined intervals. This approach minimizes processing overhead and resource consumption while ensuring the target fact table stays current with source changes, making it ideal for large fact tables where full reprocessing would be prohibitively expensive.*"
+    }
+  ],
+  "domains": [
+    {
+      "id": 1,
+      "name": "Data Movement (17 questions)"
+    },
+    {
+      "id": 2,
+      "name": "Performance Optimization (14 questions)"
+    },
+    {
+      "id": 3,
+      "name": "Storage and Data Protection (9 questions)"
+    },
+    {
+      "id": 4,
+      "name": "Data Governance (9 questions)"
+    },
+    {
+      "id": 5,
+      "name": "Data Transformation (16 questions)"
+    }
+  ]
+}
